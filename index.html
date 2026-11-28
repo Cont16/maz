@@ -193,6 +193,30 @@ body.cerrado{overflow:hidden;height:100%}
 .inf-t{font-family:var(--f-consola);font-weight:600;font-size:11px;letter-spacing:.12em;color:var(--oro-c);text-transform:uppercase}
 .informe h3{font-family:var(--f-consola);font-weight:700;font-size:19px;line-height:1.2;margin:4px 0 6px;color:#fff}
 .informe p{margin:0;font-size:16px;line-height:1.5;color:#c8d3e1}
+.pista-g{display:flex;align-items:center;justify-content:center;gap:8px;margin:2px 0 12px;padding:10px 12px;border-radius:10px;
+  background:rgba(220,192,122,.12);box-shadow:inset 0 0 0 1px rgba(220,192,122,.45);font-family:var(--f-consola);font-weight:700;font-size:14px;letter-spacing:.04em;color:var(--oro-c);text-align:center;animation:titila 1.6s ease-in-out infinite}
+.pista-g span{font-size:20px;animation:toque 1.6s ease-in-out infinite}
+@keyframes toque{50%{transform:translateY(4px)}}
+.galeria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(min-width:820px){.galeria{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.galeria button{position:relative;padding:0;border:0;border-radius:10px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;background:#07121f;box-shadow:0 0 0 1px #3f4c60;transition:transform .2s,box-shadow .2s}
+.galeria button:hover{transform:translateY(-2px)}
+.galeria button.act{box-shadow:0 0 0 2px var(--oro-c),0 0 16px rgba(220,192,122,.45)}
+.galeria button:focus-visible{outline:2px solid var(--oro-c);outline-offset:2px}
+.galeria img{width:100%;height:100%;object-fit:cover;display:block}
+.galeria .n{position:absolute;top:7px;left:7px;font-family:var(--f-consola);font-weight:700;font-size:11px;letter-spacing:.06em;color:#14263f;background:var(--oro-c);padding:2px 6px;border-radius:3px}
+.galeria .l{position:absolute;left:0;right:0;bottom:0;padding:18px 38px 8px 8px;text-align:left;font-family:var(--f-consola);font-weight:700;font-size:12px;line-height:1.2;color:#fff;background:linear-gradient(transparent,rgba(7,18,31,.92))}
+.galeria .ver{position:absolute;right:7px;bottom:7px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(220,192,122,.9);color:#14263f;font-size:13px}
+.visor{position:fixed;inset:0;z-index:40;background:rgba(7,14,26,.9);display:flex;align-items:center;justify-content:center;
+  padding:max(14px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(14px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));overflow-y:auto}
+.visor-caja{width:min(100%,460px);background:linear-gradient(180deg,#263348,#1b2536);border-radius:18px;padding:14px;box-shadow:0 0 0 1.5px var(--oro-c),0 30px 60px rgba(0,0,0,.5);margin:auto}
+.eti-v{font-family:var(--f-consola);font-weight:600;font-size:12px;letter-spacing:.06em;color:#aebfd6}
+.visor-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.cerrar{font-family:var(--f-consola);font-weight:700;font-size:13px;min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--oro-c);background:none;color:var(--oro-c);cursor:pointer}
+.cerrar:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.visor .feed{aspect-ratio:4/5;max-height:58svh}
+body.visor-on{overflow:hidden}
+.visor[hidden]{display:none}
 .mandos2{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:20px}
 .tecla{min-height:46px;min-width:120px;border-radius:8px;border:0;cursor:pointer;font-family:var(--f-consola);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
   color:#e7eef7;background:linear-gradient(180deg,#3c495d,#2a3444);box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 3px 0 #141b25,0 6px 10px rgba(0,0,0,.25)}
@@ -327,7 +351,63 @@ body.cerrado{overflow:hidden;height:100%}
         </div>
       </div>
       <div>
-        <div class="panel-t"><span>Transmisión del dron</span><b>En vivo</b></div>
+        <div class="panel-t"><span>Galería de objetivos</span><b>6 fotos</b></div>
+        <div class="pista-g" aria-hidden="true"><span>👆</span> Presiona cada foto para ver su historia</div>
+        <div class="galeria" id="galeria"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="objetivo" aria-labelledby="objT">
+    <div class="obj-cab">
+      <span class="etq">Orden de misión</span>
+      <h2 id="objT">Mi Graduación</h2>
+      <p>Fiesta de graduación</p>
+    </div>
+    <div class="brief" id="brief">
+      <div class="orden"><span>Orden de misión N.º 164</span><span>Clasificación: invitado especial</span></div>
+      <div class="sello-ap" aria-hidden="true"><b>Aprobado</b><i>Defensa Aérea</i></div>
+      <dl>
+        <div class="fila"><dt>Fecha</dt><dd>Domingo 20 de diciembre de 2026</dd></div>
+        <div class="fila"><dt>Hora</dt><dd>12:00 p. m.</dd></div>
+        <div class="fila"><dt>Lugar</dt><dd>Casa de habitación<br><span style="font-size:16px;color:var(--gris)">4.ª calle, cantón Pueblo Nuevo, Pajapita, San Marcos</span></dd></div>
+        <div class="fila"><dt>Vestimenta</dt><dd>Formal</dd></div>
+      </dl>
+      <div class="reloj-t">
+        <span class="etq">Tiempo a contacto</span>
+        <div class="reloj" id="reloj" aria-label="Tiempo que falta">
+          <span class="c"><b>--</b><i>Días</i></span><span class="c"><b>--</b><i>Horas</i></span><span class="c"><b>--</b><i>Min</i></span><span class="c"><b>--</b><i>Seg</i></span>
+        </div>
+      </div>
+      <div class="regalo">
+        <svg width="46" height="34" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="58" height="37" rx="3"/><path d="M3 11l29 20 29-20"/></svg>
+        <b>Sugerencia de regalo</b>
+        <p>Tu presencia es el mejor regalo. Si deseas tener un detalle conmigo, te agradeceré que sea en efectivo.</p>
+        <i>Lluvia de sobres</i>
+      </div>
+      <a class="btn btn-linea" id="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=4a%20calle%2C%20Cant%C3%B3n%20Pueblo%20Nuevo%2C%20Pajapita%2C%20San%20Marcos%2C%20Guatemala" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="confirma">
+      <h3>Confirma tu asistencia</h3>
+      <p>Antes del <b>10 de diciembre</b></p>
+      <a class="btn btn-lleno doble" id="wa" href="https://wa.me/50259768288?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20fiesta%20de%20graduaci%C3%B3n%20de%20Marilyn%20el%20domingo%2020%20de%20diciembre." target="_blank" rel="noopener"><span>Aceptar invitación</span><small>Confirmar por WhatsApp</small></a>
+      <p>o escribe al <b style="user-select:all">5976 8288</b></p>
+    </div>
+  </section>
+
+  <footer class="cierre">
+    <p>Será un verdadero honor compartir contigo la alegría de este logro. Después de tantos años de esfuerzo y dedicación, deseo celebrar este momento tan especial rodeada de las personas que forman parte de mi vida.</p>
+    <p class="espero"><b>¡Te espero!</b> Tu presencia hará aún más especial este día.</p>
+    <div class="firma">Marilyn Mazariegos</div>
+    <span class="etq">Promoción 164 · Promoción 24 EMA</span>
+  </footer>
+</main>
+
+
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Transmisión del dron" hidden>
+  <div class="visor-caja">
+    <div class="visor-top"><span class="eti-v">Toca ▶ para ver la siguiente</span><button type="button" class="cerrar" id="cerrar">✕ Cerrar</button></div>
+    <div class="panel-t"><span>Transmisión del dron</span><b>En vivo</b></div>
         <div class="feed" id="feed">
           <div id="tomas"></div>
           <div class="ruido" id="ruido" aria-hidden="true"></div>
@@ -346,55 +426,8 @@ body.cerrado{overflow:hidden;height:100%}
           <button type="button" class="tecla" id="ant"><span>◀</span> Anterior</button>
           <button type="button" class="tecla" id="sig">Siguiente <span>▶</span></button>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="objetivo" aria-labelledby="objT">
-    <div class="obj-cab">
-      <span class="etq">Orden de misión</span>
-      <h2 id="objT">Mi Graduación</h2>
-      <p>Fiesta de graduación</p>
-    </div>
-    <div class="brief" id="brief">
-      <div class="orden"><span>Orden de misión N.º 164</span><span>Clasificación: invitado especial</span></div>
-      <div class="sello-ap" aria-hidden="true"><b>Aprobado</b><i>Defensa Aérea</i></div>
-      <dl>
-        <div class="fila"><dt>Fecha</dt><dd>Domingo 20 de diciembre de 2026</dd></div>
-        <div class="fila"><dt>Hora</dt><dd>12:00 p. m.</dd></div>
-        <div class="fila"><dt>Lugar</dt><dd>Cancha del cantón Pueblo Nuevo, Pajapita, San Marcos</dd></div>
-        <div class="fila"><dt>Vestimenta</dt><dd>Formal</dd></div>
-      </dl>
-      <div class="reloj-t">
-        <span class="etq">Tiempo a contacto</span>
-        <div class="reloj" id="reloj" aria-label="Tiempo que falta">
-          <span class="c"><b>--</b><i>Días</i></span><span class="c"><b>--</b><i>Horas</i></span><span class="c"><b>--</b><i>Min</i></span><span class="c"><b>--</b><i>Seg</i></span>
-        </div>
-      </div>
-      <div class="regalo">
-        <svg width="46" height="34" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="58" height="37" rx="3"/><path d="M3 11l29 20 29-20"/></svg>
-        <b>Sugerencia de regalo</b>
-        <p>Tu presencia es el mejor regalo. Si deseas tener un detalle conmigo, te agradeceré que sea en efectivo.</p>
-        <i>Lluvia de sobres</i>
-      </div>
-      <a class="btn btn-linea" id="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=Cant%C3%B3n%20Pueblo%20Nuevo%2C%20Pajapita%2C%20San%20Marcos%2C%20Guatemala" target="_blank" rel="noopener">Cómo llegar</a>
-    </div>
-    <div class="confirma">
-      <h3>Confirma tu asistencia</h3>
-      <p>Antes del <b>10 de diciembre</b></p>
-      <a class="btn btn-lleno doble" id="wa" href="https://wa.me/50259768288?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20fiesta%20de%20graduaci%C3%B3n%20de%20Marilyn%20el%20domingo%2020%20de%20diciembre." target="_blank" rel="noopener"><span>Aceptar invitación</span><small>Confirmar por WhatsApp</small></a>
-      <p>o escribe al <b style="user-select:all">5976 8288</b></p>
-    </div>
-  </section>
-
-  <footer class="cierre">
-    <p>Será un verdadero honor compartir contigo la alegría de este logro. Después de tantos años de esfuerzo y dedicación, deseo celebrar este momento tan especial rodeada de las personas que forman parte de mi vida.</p>
-    <p class="espero"><b>¡Te espero!</b> Tu presencia hará aún más especial este día.</p>
-    <div class="firma">Marilyn Mazariegos</div>
-    <span class="etq">Promoción 164 · Promoción 24 EMA</span>
-  </footer>
-</main>
-
+  </div>
+</div>
 <script>
 {
   // Fotos: lugar de cada una (pendiente) y foto (vacía hasta tenerla)
@@ -447,6 +480,7 @@ body.cerrado{overflow:hidden;height:100%}
     if(!quieto){ruido.classList.remove('on');void ruido.offsetWidth;ruido.classList.add('on');}
     tomas.forEach((t,k)=>t.classList.toggle('ver',k===i));
     puntos.forEach((p,k)=>{p.classList.toggle('ok',k<=i);p.classList.toggle('actual',k===i);});
+    if(window.__thumbs)__thumbs.forEach((b,k)=>b.classList.toggle('act',k===i));
     const fin=i===N;
     consola.classList.toggle('cumplida',fin);
     cuenta2.textContent=Math.min(i+1,N)+' / '+N+' objetivos';
@@ -467,7 +501,7 @@ body.cerrado{overflow:hidden;height:100%}
     const dt=Math.min(t-prev,100);prev=t;const a0=ang;ang=(ang+dt/3200*360)%360;
     sw.style.transform=`rotate(${ang}deg)`;
     puntos.forEach((pt,k)=>{if(cruza(a0,ang,pos[k][0])){pt.classList.remove('eco');void pt.offsetWidth;pt.classList.add('eco');}});
-    if(!manual&&visible){
+    if(!manual&&visible&&visor.hidden){
       if(idx===N){if(t-ultimo>6000){ultimo=t;lEst.textContent='Vigilando';ver(-1);tomas.forEach(x=>x.classList.remove('ver'));tomas[0].classList.add('ver');idx=-1;estado2.textContent='Buscando objetivos…';cuenta2.textContent='0 / '+N+' objetivos';consola.classList.remove('cumplida');}}
       else if(idx===N-1){if(t-ultimo>4200){ultimo=t;ver(N);}}
       else if(t-ultimo>3800&&cruza(a0,ang,pos[idx+1][0])){ultimo=t;ver(idx+1);}
@@ -477,9 +511,18 @@ body.cerrado{overflow:hidden;height:100%}
   if(!quieto)requestAnimationFrame(giro);
   if('IntersectionObserver' in window){new IntersectionObserver(es=>es.forEach(e=>visible=e.isIntersecting),{threshold:.4}).observe(consola);}else visible=true;
   const ir=i=>{manual=true;tono(1100,[0]);ver((i+N+1)%(N+1));};
+  const gal=document.getElementById('galeria'),visor=document.getElementById('visor');
+  gal.innerHTML=fotos.map((f,i)=>`<button type="button" data-i="${i}" aria-label="Ver objetivo ${i+1}: ${f.tit}"><img src="${f.img}" alt="" style="object-position:${f.pos||'50% 50%'}"><span class="n">Objetivo ${String(i+1).padStart(2,'0')}</span><span class="l">${f.lugar}</span><span class="ver" aria-hidden="true">▶</span></button>`).join('');
+  const thumbs=[...gal.children];window.__thumbs=thumbs;let desde=null;
+  const abrir=(i,el)=>{desde=el||null;visor.hidden=false;document.body.classList.add('visor-on');ir(i);document.getElementById('cerrar').focus();};
+  const cerrar=()=>{visor.hidden=true;document.body.classList.remove('visor-on');if(desde)desde.focus();};
+  gal.addEventListener('click',e=>{const b=e.target.closest('button');if(b)abrir(+b.dataset.i,b);});
+  document.getElementById('cerrar').addEventListener('click',cerrar);
+  visor.addEventListener('click',e=>{if(e.target===visor)cerrar();});
+  addEventListener('keydown',e=>{if(visor.hidden)return;if(e.key==='Escape')cerrar();if(e.key==='ArrowRight')ir(idx+1);if(e.key==='ArrowLeft')ir(idx<0?0:idx-1);});
   document.getElementById('ant').addEventListener('click',()=>ir(idx<0?0:idx-1));
   document.getElementById('sig').addEventListener('click',()=>ir(idx+1));
-  puntos.forEach(p=>p.addEventListener('click',()=>ir(+p.dataset.i)));
+  puntos.forEach(p=>p.addEventListener('click',()=>abrir(+p.dataset.i,p)));
   // Deslizar sobre la transmisión
   {let x0=null;const fd=document.getElementById('feed');
    fd.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;},{passive:true});
