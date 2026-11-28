@@ -103,6 +103,18 @@ body.cerrado{overflow:hidden;height:100%}
 .promos{font-family:var(--f-consola);font-size:15px;color:var(--azul-m);letter-spacing:.04em}
 .promos span{color:var(--oro);padding:0 .5em}
 .frase{font-style:italic;font-size:clamp(19px,5vw,23px);color:#2c4467;max-width:26ch;margin:4px 0 0}
+.hero-foto{position:absolute;inset:0;z-index:-3;background:var(--foto) 50% 38%/cover no-repeat;transform:scale(1.06);animation:acerca 18s ease-out forwards}
+@keyframes acerca{to{transform:scale(1)}}
+.hero.con-foto::after{top:0;left:0;right:0;height:100%;filter:none;opacity:1;z-index:-2;
+  background:linear-gradient(180deg,rgba(16,32,56,.55) 0%,rgba(20,40,70,.5) 40%,rgba(28,51,84,.72) 72%,var(--fondo) 100%)}
+.hero.con-foto::before{opacity:.45;bottom:0}
+.hero.con-foto .rango{color:var(--oro-c)}
+.hero.con-foto .nombre{color:#fff;text-shadow:0 3px 24px rgba(10,22,40,.65)}
+.hero.con-foto .promos{color:#e6eef8}
+.hero.con-foto .promos span{color:var(--oro-c)}
+.hero.con-foto .frase{color:#f1f5fa;text-shadow:0 1px 10px rgba(10,22,40,.6)}
+.hero.con-foto .adorno{color:var(--oro-c)}
+.hero.con-foto .baja{color:var(--azul)}
 .baja{position:absolute;bottom:22px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:var(--f-consola);font-size:13px;color:var(--azul-m)}
 .baja svg{animation:bajar 1.8s ease-in-out infinite}
 @keyframes bajar{50%{transform:translateY(6px)}}
@@ -197,6 +209,20 @@ body.cerrado{overflow:hidden;height:100%}
   background:rgba(220,192,122,.12);box-shadow:inset 0 0 0 1px rgba(220,192,122,.45);font-family:var(--f-consola);font-weight:700;font-size:14px;letter-spacing:.04em;color:var(--oro-c);text-align:center;animation:titila 1.6s ease-in-out infinite}
 .pista-g span{font-size:20px;animation:toque 1.6s ease-in-out infinite}
 @keyframes toque{50%{transform:translateY(4px)}}
+.pista-g.espera{visibility:hidden;opacity:0;transform:translateY(6px);animation:none}
+.pista-g{transition:opacity .5s,transform .5s}
+.galeria.oculta button img{filter:brightness(.1) grayscale(1) blur(3px);transition:filter .7s ease .3s}
+.galeria.oculta button .n,.galeria.oculta button .l,.galeria.oculta button .ver{opacity:0;transition:opacity .4s ease .55s}
+.galeria.oculta button::before{content:"Buscando…";position:absolute;inset:0;z-index:2;display:grid;place-items:center;font-family:var(--f-consola);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8fb4d9;animation:titila 1.2s steps(2) infinite;transition:opacity .2s}
+.galeria.oculta button::after{content:"";position:absolute;left:0;right:0;top:-14%;height:14%;z-index:3;opacity:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(243,220,158,.9) 50%,transparent);box-shadow:0 0 18px rgba(243,220,158,.7)}
+.galeria.oculta button.rev::before{opacity:0;animation:none}
+.galeria.oculta button.rev img{filter:none}
+.galeria.oculta button.rev .n,.galeria.oculta button.rev .l,.galeria.oculta button.rev .ver{opacity:1}
+.galeria.oculta button.rev::after{animation:escaneo .8s ease-out}
+.galeria.oculta button.rev{box-shadow:0 0 0 1px #3f4c60}
+.galeria.oculta button.rev.flash{box-shadow:0 0 0 2px var(--oro-c),0 0 22px rgba(243,220,158,.6)}
+@keyframes escaneo{0%{top:-14%;opacity:1}85%{opacity:1}100%{top:100%;opacity:0}}
 .galeria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 @media(min-width:820px){.galeria{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .galeria button{position:relative;padding:0;border:0;border-radius:10px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;background:#07121f;box-shadow:0 0 0 1px #3f4c60;transition:transform .2s,box-shadow .2s}
@@ -217,6 +243,25 @@ body.cerrado{overflow:hidden;height:100%}
 .visor .feed{aspect-ratio:4/5;max-height:58svh}
 body.visor-on{overflow:hidden}
 .visor[hidden]{display:none}
+.galeria .visto{position:absolute;top:7px;right:7px;display:none;align-items:center;gap:3px;font-family:var(--f-consola);font-weight:700;font-size:11px;color:#fff;background:#2f7a5b;padding:2px 6px;border-radius:3px;box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+.galeria button.ya .visto{display:flex}
+.galeria button.ya img{filter:saturate(.85)}
+#vistos{transition:color .3s}
+#vistos.pop{animation:pop .5s ease}
+@keyframes pop{40%{transform:scale(1.25)}}
+.fiesta{position:fixed;inset:0;z-index:60;pointer-events:none;overflow:hidden}
+.fiesta i{position:absolute;top:-30px;color:var(--oro-c);text-shadow:0 0 8px rgba(220,192,122,.8);animation:cae linear forwards}
+@keyframes cae{to{transform:translateY(calc(100vh + 60px)) rotate(var(--r,360deg))}}
+.logro{position:fixed;left:50%;top:50%;z-index:61;transform:translate(-50%,-50%) scale(.7);opacity:0;transition:transform .5s cubic-bezier(.3,1.4,.5,1),opacity .4s;
+  width:min(88vw,380px);text-align:center;padding:26px 22px 22px;border-radius:18px;background:linear-gradient(180deg,#22406a,#1c3354);color:#fff;
+  box-shadow:0 0 0 2px var(--oro-c),0 0 60px rgba(220,192,122,.55),0 30px 60px rgba(0,0,0,.5);pointer-events:none}
+.logro.on{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+.logro .es{font-size:42px;line-height:1;color:var(--oro-c)}
+.logro b{display:block;font-family:var(--f-nombre);font-style:italic;font-weight:500;font-size:38px;line-height:1.1;color:var(--oro-c);margin:6px 0}
+.logro p{margin:0 0 14px;color:#dfe7f1;font-size:16px}
+.logro button{font-family:var(--f-consola);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;min-height:44px;padding:0 22px;border-radius:999px;border:0;background:var(--oro-c);color:#14263f;cursor:pointer}
+.cumplida2 .radar2{box-shadow:0 0 0 3px var(--oro-c),0 0 0 9px #2b3546,0 0 0 10px #3f4c60,0 0 60px rgba(220,192,122,.7),inset 0 0 40px rgba(0,0,0,.5)!important}
+.cumplida2 .punto::before{background:var(--oro-c)!important;box-shadow:0 0 12px var(--oro-c)!important;animation:none!important}
 .mandos2{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:20px}
 .tecla{min-height:46px;min-width:120px;border-radius:8px;border:0;cursor:pointer;font-family:var(--f-consola);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
   color:#e7eef7;background:linear-gradient(180deg,#3c495d,#2a3444);box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 3px 0 #141b25,0 6px 10px rgba(0,0,0,.25)}
@@ -302,7 +347,8 @@ body.visor-on{overflow:hidden}
 </section>
 
 <main>
-  <header class="hero">
+  <header class="hero con-foto">
+    <div class="hero-foto" id="heroFoto" aria-hidden="true"></div>
     <svg class="estela" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <path class="l" d="M-30 262C90 252 180 172 262 66" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="4" stroke-linecap="round"/>
       <path class="l" d="M-30 270C92 260 184 180 268 72" fill="none" stroke="rgba(220,192,122,.6)" stroke-width="1.2" stroke-linecap="round"/>
@@ -351,8 +397,8 @@ body.visor-on{overflow:hidden}
         </div>
       </div>
       <div>
-        <div class="panel-t"><span>Galería de objetivos</span><b>6 fotos</b></div>
-        <div class="pista-g" aria-hidden="true"><span>👆</span> Presiona cada foto para ver su historia</div>
+        <div class="panel-t"><span>Galería de objetivos</span><b id="vistos">0 / 6 vistos</b></div>
+        <div class="pista-g" id="pistaG" aria-hidden="true"><span>👆</span> Presiona cada foto para ver su historia</div>
         <div class="galeria" id="galeria"></div>
       </div>
     </div>
@@ -404,6 +450,8 @@ body.visor-on{overflow:hidden}
 </main>
 
 
+<div class="fiesta" id="fiesta" aria-hidden="true"></div>
+<div class="logro" id="logro" role="status" aria-live="polite"><div class="es">★</div><b>Misión cumplida</b><p>Viste los 6 objetivos de mi historia. ¡Gracias por acompañarme en este camino!</p><button type="button" id="logroOk">Continuar</button></div>
 <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Transmisión del dron" hidden>
   <div class="visor-caja">
     <div class="visor-top"><span class="eti-v">Toca ▶ para ver la siguiente</span><button type="button" class="cerrar" id="cerrar">✕ Cerrar</button></div>
@@ -481,6 +529,7 @@ body.visor-on{overflow:hidden}
     tomas.forEach((t,k)=>t.classList.toggle('ver',k===i));
     puntos.forEach((p,k)=>{p.classList.toggle('ok',k<=i);p.classList.toggle('actual',k===i);});
     if(window.__thumbs)__thumbs.forEach((b,k)=>b.classList.toggle('act',k===i));
+    if(window.__marcarVisto&&i>=0&&i<N)__marcarVisto(i);
     const fin=i===N;
     consola.classList.toggle('cumplida',fin);
     cuenta2.textContent=Math.min(i+1,N)+' / '+N+' objetivos';
@@ -512,9 +561,30 @@ body.visor-on{overflow:hidden}
   if('IntersectionObserver' in window){new IntersectionObserver(es=>es.forEach(e=>visible=e.isIntersecting),{threshold:.4}).observe(consola);}else visible=true;
   const ir=i=>{manual=true;tono(1100,[0]);ver((i+N+1)%(N+1));};
   const gal=document.getElementById('galeria'),visor=document.getElementById('visor');
-  gal.innerHTML=fotos.map((f,i)=>`<button type="button" data-i="${i}" aria-label="Ver objetivo ${i+1}: ${f.tit}"><img src="${f.img}" alt="" style="object-position:${f.pos||'50% 50%'}"><span class="n">Objetivo ${String(i+1).padStart(2,'0')}</span><span class="l">${f.lugar}</span><span class="ver" aria-hidden="true">▶</span></button>`).join('');
-  const thumbs=[...gal.children];window.__thumbs=thumbs;let desde=null;
+  gal.innerHTML=fotos.map((f,i)=>`<button type="button" data-i="${i}" aria-label="Ver objetivo ${i+1}: ${f.tit}"><img src="${f.img}" alt="" style="object-position:${f.pos||'50% 50%'}"><span class="n">Objetivo ${String(i+1).padStart(2,'0')}</span><span class="l">${f.lugar}</span><span class="ver" aria-hidden="true">▶</span><span class="visto">✓ Visto</span></button>`).join('');
+  const thumbs=[...gal.children];window.__thumbs=thumbs;
+  // Foto de fondo detrás del nombre (la del atardecer en la pista)
+  document.getElementById('heroFoto').style.setProperty('--foto',`url("${fotos[5].img}")`);
+  // Las fotos aparecen una por una, como si el radar las detectara
+  {const pg=document.getElementById('pistaG');
+   if(!quieto&&'IntersectionObserver' in window){
+     gal.classList.add('oculta');pg.classList.add('espera');
+     const ioG=new IntersectionObserver(es=>{if(!es.some(e=>e.isIntersecting))return;ioG.disconnect();
+       thumbs.forEach((b,k)=>setTimeout(()=>{b.classList.add('rev','flash');tono(880+k*60,[0]);setTimeout(()=>b.classList.remove('flash'),700);},350+k*550));
+       setTimeout(()=>pg.classList.remove('espera'),350+thumbs.length*550+300);
+     },{threshold:.35});
+     ioG.observe(gal);
+   }}let desde=null;
   const abrir=(i,el)=>{desde=el||null;visor.hidden=false;document.body.classList.add('visor-on');ir(i);document.getElementById('cerrar').focus();};
+  const vistos=new Set(),vT=document.getElementById('vistos'),logro=document.getElementById('logro'),fiesta=document.getElementById('fiesta');
+  let celebrado=false;
+  const celebrar=()=>{celebrado=true;manual=true;consola.classList.add('cumplida2');estado2.textContent='Misión cumplida';tono(1250,[0,.14,.28]);
+    if(!quieto){let h='';for(let k=0;k<46;k++){h+=`<i style="left:${Math.random()*100}%;font-size:${12+Math.random()*18}px;animation-duration:${2.4+Math.random()*2.2}s;animation-delay:${Math.random()*1.2}s;--r:${(Math.random()>.5?1:-1)*(180+Math.random()*360)}deg">★</i>`;}fiesta.innerHTML=h;setTimeout(()=>fiesta.innerHTML='',5200);}
+    setTimeout(()=>{logro.classList.add('on');document.getElementById('logroOk').focus();},300);};
+  window.__marcarVisto=i=>{if(visor.hidden||vistos.has(i))return;vistos.add(i);thumbs[i].classList.add('ya');
+    vT.textContent=vistos.size+' / '+N+' vistos';vT.classList.remove('pop');void vT.offsetWidth;vT.classList.add('pop');
+    if(vistos.size===N&&!celebrado)setTimeout(celebrar,900);};
+  document.getElementById('logroOk').addEventListener('click',()=>{logro.classList.remove('on');cerrar();});
   const cerrar=()=>{visor.hidden=true;document.body.classList.remove('visor-on');if(desde)desde.focus();};
   gal.addEventListener('click',e=>{const b=e.target.closest('button');if(b)abrir(+b.dataset.i,b);});
   document.getElementById('cerrar').addEventListener('click',cerrar);
